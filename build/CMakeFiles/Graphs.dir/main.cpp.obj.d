@@ -131,7 +131,6 @@ CMakeFiles/Graphs.dir/main.cpp.obj: \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- D:\SideProjects\Programming\PlayingWithGraphs\DirectedGraph.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/memory \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_uninitialized.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_tempbuf.h \
@@ -154,6 +153,7 @@ CMakeFiles/Graphs.dir/main.cpp.obj: \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_base.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/atomic_lockfree_defines.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/backward/auto_ptr.h \
+ D:\SideProjects\Programming\PlayingWithGraphs\DirectedGraph.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/vector \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_vector.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_bvector.h \
@@ -164,4 +164,11 @@ CMakeFiles/Graphs.dir/main.cpp.obj: \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_heap.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/uniform_int_dist.h \
  D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/limits \
- D:\SideProjects\Programming\PlayingWithGraphs\GraphVertex.h
+ D:\SideProjects\Programming\PlayingWithGraphs\GraphVertex.h \
+ D:\SideProjects\Programming\PlayingWithGraphs\GraphFunction.h \
+ D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/queue \
+ D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/deque \
+ D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_deque.h \
+ D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/deque.tcc \
+ D:/GCC/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_queue.h \
+ D:\SideProjects\Programming\PlayingWithGraphs\UndirectedGraph.h

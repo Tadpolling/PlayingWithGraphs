@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 #include "GraphVertex.h"
+#include "GraphFunction.h"
+#include <queue>
 template <class T>
 class DirectedGraph
 {
@@ -232,6 +234,27 @@ public:
         typename std::vector<std::shared_ptr<GraphVertex<T>>>::iterator vertex_iterator = verticies_ptrs_.begin() + index;
         verticies_ptrs_.erase(vertex_iterator);
     }
+    void removeVertex(const std::string &name)
+    {
+        std::vector<std::string>::iterator i = std::find(verticies_names_.begin(), verticies_names_.end(), name);
+        if (i == verticies_names_.end())
+        {
+            std::cerr << name << "Isn't a Vertex in the graph\n";
+            return;
+        }
+
+        std::shared_ptr<GraphVertex<T>> vptr = getVertex(name);
+        std::vector<std::string> outgoing_names = vptr->getOutEdgesNames();
+        for (int i = 0; i < outgoing_names.size(); i++)
+        {
+            this->removeEdge(name, outgoing_names[i]);
+        }
+
+        verticies_names_.erase(i);
+        int index = i - verticies_names_.begin();
+        typename std::vector<std::shared_ptr<GraphVertex<T>>>::iterator vertex_iterator = verticies_ptrs_.begin() + index;
+        verticies_ptrs_.erase(vertex_iterator);
+    }
     friend std::ostream &operator<<(std::ostream &os, const DirectedGraph<T> &G)
     {
         os << "Printing Graph:\n";
@@ -276,6 +299,63 @@ public:
             std::cout << topo_sort[i] << ", ";
         }
         std::cout << topo_sort[topo_sort.size() - 1] << " ]\n";
+    }
+    void printNames()
+    {
+        for (int i = 0; i < verticies_names_.size(); i++)
+        {
+            std::cout << verticies_names_[i] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::shared_ptr<GraphFunction<double>> BFS(std::string &s)
+    {
+        // s is the name of the starting vertex
+        GraphFunction<double> *p_bfs_output = new GraphFunction<double>();
+        std::shared_ptr<GraphFunction<double>> bfs_output_ptr = std::shared_ptr<GraphFunction<double>>(p_bfs_output);
+        // GraphFunction<double> (*p_bfs_output) = *p_bfs_output;
+        GraphFunction<std::string> bfs_parents = GraphFunction<std::string>();
+        for (int i = 0; i < verticies_names_.size(); i++)
+        {
+            (*p_bfs_output).addValue(verticies_names_[i], std::numeric_limits<double>::infinity());
+            bfs_parents.addValue(verticies_names_[i], "-");
+        }
+        (*p_bfs_output).updateValue(s, 0);
+        std::queue<std::string> vertexQueue = std::queue<std::string>();
+        vertexQueue.push(s);
+        while (vertexQueue.size() > 0)
+        {
+            /*for (int i = 0; i < vertexQueue.size(); i++)
+            {
+                std::cout << vertexQueue. << " ";
+            }
+            */
+            // std::cout << "\n";
+            std::string currentVertex = vertexQueue.front();
+            vertexQueue.pop();
+            // std::cout << currentVertex << "\n";
+            std::vector<std::string> outGoingVerticies = (*getVertex(currentVertex)).getOutEdgesNames();
+
+            for (int i = 0; i < outGoingVerticies.size(); i++)
+            {
+                // std::cout << outGoingVerticies[i] << " ";
+                if ((*p_bfs_output).getVertexValue(outGoingVerticies[i]) == std::numeric_limits<double>::infinity())
+                {
+                    (*p_bfs_output).updateValue(outGoingVerticies[i], (*p_bfs_output).getVertexValue(currentVertex) + 1);
+                    // std::cout << "Gave Value" << (*p_bfs_output).getVertexValue(outGoingVerticies[i]) << " to " << outGoingVerticies[i] << "\n";
+                    bfs_parents.updateValue(outGoingVerticies[i], currentVertex);
+                    vertexQueue.push(outGoingVerticies[i]);
+                }
+            }
+            // std::cout << "finished vertex\n";
+        }
+        return bfs_output_ptr;
+        // return p_bfs_output;
+    }
+    std::shared_ptr<GraphFunction<double>> BFS(const std::string &s)
+    {
+        std::string vertexName = s;
+        return BFS(vertexName);
     }
 };
 #endif
