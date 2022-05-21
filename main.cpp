@@ -1,8 +1,11 @@
 #include <iostream>
 //#include "Node.h"
 #include <string>
+#include <memory>
 #include "DirectedGraph.h"
 #include "GraphVertex.h"
+#include "UndirectedGraph.h"
+#include "GraphFunction.h"
 // typedef std::shared_ptr<GraphVertex<int>> VertexPtr;
 int main(int, char **)
 {
@@ -29,7 +32,7 @@ int main(int, char **)
 
     */
 
-    DirectedGraph<int> G = DirectedGraph<int>();
+    /*DirectedGraph<int> G = DirectedGraph<int>();
     int num = 3;
     G.addVertex(num, "c");
     G.addVertex(4, "a");
@@ -39,6 +42,8 @@ int main(int, char **)
     G.createEdge("b", "c", 5.6);
     G.createEdge("a", "b");
     G.printTopologicolSort();
+
+    */
     // std::cout << G.printI;nGoingEdges(std::cout);
 
     /* while (G.verticies_names_.size() > 0)
@@ -60,4 +65,41 @@ int main(int, char **)
     //           << G2;
 
     // int b = 2;
+    UndirectedGraph<int> G = UndirectedGraph<int>();
+    for (int i = 0; i <= 'H' - 'A'; i++)
+    {
+        char c = (char)('A' + i);
+        std::string s = std::string(1, c);
+        // std::cout << c << " ";
+        G.addVertex(1, s);
+    }
+    std::cout << "\n";
+
+    /* G.addVertex(1, "A");
+     G.addVertex(1, "B");
+     G.addVertex(1, "C");
+     G.addVertex(1, "D");
+     G.addVertex(1, "E");
+     G.addVertex(1, "F");
+     G.addVertex(1, "G");
+     G.addVertex(1, "H");
+     */
+    std::cout << "Finished Creating Graph\n";
+    G.printNames();
+    G.createEdge("A", "C");
+    G.createEdge("A", "B");
+    G.createEdge("A", "F");
+    G.createEdge("A", "G");
+    G.createEdge("G", "E");
+    G.createEdge("F", "E");
+    G.createEdge("F", "D");
+    G.createEdge("D", "E");
+    G.createEdge("D", "H");
+    std::cout << G << "\n";
+    // std::shared_ptr<GraphFunction<double>> gf_ptr = G.BFS("A");
+    std::shared_ptr<GraphFunction<double>> gf_ptr = G.BFS("A");
+    // std::cout << *gf_ptr;
+    // std::cout << G << "\n";
+    // std::cout << "working:\n";
+    std::cout << (*gf_ptr) << "\n";
 }
